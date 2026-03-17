@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@theme {
+  --color-burgundy: #842935;
+  --color-burgundy-light: #9a3340;
+  --color-burgundy-dark: #6b1f2a;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #09090b;
+  overflow-x: hidden;
+}
+
+/* ── Atmospheric Background ── */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(132, 41, 53, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(132, 41, 53, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 80%, rgba(107, 31, 42, 0.04) 0%, transparent 60%),
+    #09090b;
+}
+
+.bg-orb-1 {
+  position: absolute;
+  top: -15%;
+  left: -10%;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(132, 41, 53, 0.12) 0%, rgba(132, 41, 53, 0.03) 40%, transparent 70%);
+  filter: blur(80px);
+  animation: drift-1 25s ease-in-out infinite;
+}
+
+.bg-orb-2 {
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(132, 41, 53, 0.09) 0%, rgba(107, 31, 42, 0.02) 45%, transparent 70%);
+  filter: blur(80px);
+  animation: drift-2 30s ease-in-out infinite;
+}
+
+.bg-orb-3 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(154, 51, 64, 0.06) 0%, transparent 65%);
+  filter: blur(60px);
+  animation: breathe 18s ease-in-out infinite;
+}
+
+/* Warm accent — not purple, not pink, just a hint of warmth */
+.bg-orb-warm {
+  position: absolute;
+  top: 15%;
+  right: 25%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180, 130, 100, 0.035) 0%, transparent 65%);
+  filter: blur(60px);
+  animation: drift-1 22s ease-in-out infinite reverse;
+}
+
+@keyframes drift-1 {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(40px, -25px); }
+  50% { transform: translate(15px, 20px); }
+  75% { transform: translate(-30px, -10px); }
+}
+
+@keyframes drift-2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-35px, 20px); }
+  66% { transform: translate(25px, -15px); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.5; transform: translateX(-50%) scale(1.08); }
+}
+
+/* Noise texture */
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+}
+
+/* Vignette — heavier at edges for cinematic depth */
+.bg-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse 70% 65% at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+}
+
+/* ── Glassmorphism Card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(48px) saturate(1.2);
+  -webkit-backdrop-filter: blur(48px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 -1px 0 0 rgba(0, 0, 0, 0.15) inset;
+}
+
+/* ── CTA Button — "Light from sky" depth ── */
+.btn-burgundy {
+  position: relative;
+  background: linear-gradient(180deg, #943545 0%, #842935 40%, #752430 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(132, 41, 53, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-burgundy:hover {
+  background: linear-gradient(180deg, #a03c4c 0%, #943545 40%, #842935 100%);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(132, 41, 53, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px) scale(1.02);
+  filter: brightness(1.05);
+}
+
+.btn-burgundy:active {
+  transform: translateY(0) scale(1);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(132, 41, 53, 0.25),
+    inset 0 2px 4px rgba(0, 0, 0, 0.15);
+  filter: brightness(0.97);
+}
+
+.btn-burgundy:disabled {
+  opacity: 0.55;
+  transform: none;
+  filter: none;
+  cursor: not-allowed;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Input — matching depth language ── */
+.input-dark {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-dark:focus {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(132, 41, 53, 0.45);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    0 0 0 3px rgba(132, 41, 53, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* ── Brand Divider ── */
+.brand-divider {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(132, 41, 53, 0.6), transparent);
+}
