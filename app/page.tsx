@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -17,17 +17,17 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { duration: 0.7, type: "tween" },
   },
-};
+} satisfies Variants;
 
 const fadeIn = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" as const },
+    transition: { duration: 0.6, type: "tween" },
   },
-};
+} satisfies Variants;
 
 export default function Home() {
   const [email, setEmail] = useState("");
