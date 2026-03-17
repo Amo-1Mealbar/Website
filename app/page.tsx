@@ -72,95 +72,113 @@ export default function Home() {
       <div className="bg-noise" />
       <div className="bg-vignette" />
 
+      {/* Logo — top left */}
+      <motion.img
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        src="/logo-transparent.png"
+        alt="AmoBar"
+        className="absolute top-6 left-6 z-20 h-20 md:h-28 lg:top-8 lg:left-10 lg:h-36 w-auto"
+      />
+
       {/* Content */}
       <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-20">
         <motion.div
-          className="flex w-full max-w-lg lg:max-w-2xl xl:max-w-3xl flex-col items-center gap-10 lg:gap-14 text-center"
+          className="flex w-full max-w-lg flex-col items-center gap-10 text-center lg:max-w-6xl lg:flex-row lg:items-center lg:justify-between lg:gap-20 lg:text-left"
           variants={stagger}
           initial="hidden"
           animate="visible"
         >
-          {/* Brand wordmark */}
-          <motion.p
-            variants={fadeIn}
-            className="text-2xl lg:text-3xl font-semibold tracking-[0.35em] uppercase text-white/90"
-          >
-            AmoBar
-          </motion.p>
+          {/* Left side — hero (desktop) / top section (mobile) */}
+          <div className="flex flex-col items-center gap-8 lg:items-start lg:flex-1">
 
-          {/* Divider */}
-          <motion.div
-            variants={fadeIn}
-            className="brand-divider"
-          />
+            {/* Badge */}
+            <motion.span
+              variants={fadeUp}
+              className="inline-block rounded-full border border-white/[0.07] bg-white/[0.03] px-5 py-1.5 text-[11px] font-medium tracking-[0.2em] text-amber-200/60 uppercase"
+            >
+              Coming Soon
+            </motion.span>
 
-          {/* Badge */}
-          <motion.span
-            variants={fadeUp}
-            className="inline-block rounded-full border border-white/[0.07] bg-white/[0.03] px-5 py-1.5 text-[11px] font-medium tracking-[0.2em] text-amber-200/60 uppercase"
-          >
-            Coming Soon
-          </motion.span>
+            {/* Hero H1 */}
+            <motion.h1
+              variants={fadeUp}
+              className="text-5xl font-bold leading-[0.92] tracking-tighter text-white sm:text-6xl md:text-7xl"
+            >
+              {/* Mobile: two lines */}
+              <span className="lg:hidden">
+                One bar.
+                <br />
+                <span className="text-[#F6BD60]">One full meal.</span>
+              </span>
+              {/* Desktop: one line */}
+              <span className="hidden lg:inline">
+                One bar = <span className="text-[#F6BD60]">One full meal.</span>
+              </span>
+            </motion.h1>
 
-          {/* Hero H1 — high contrast, tight tracking */}
-          <motion.h1
-            variants={fadeUp}
-            className="text-5xl font-bold leading-[0.92] tracking-tighter text-white sm:text-6xl md:text-7xl"
-          >
-            One bar.
-            <br />
-            <span className="bg-gradient-to-r from-[#f5d670] to-[#d4a832] bg-clip-text text-transparent">
-              One full meal.
-            </span>
-          </motion.h1>
+            {/* Subtitle */}
+            <motion.p
+              variants={fadeUp}
+              className="max-w-sm text-base leading-relaxed text-zinc-300 md:text-lg"
+            >
+              A healthy, convenient, on-the-go solution.
+            </motion.p>
 
-          {/* Subtitle */}
-          <motion.p
-            variants={fadeUp}
-            className="max-w-sm lg:max-w-md text-base leading-relaxed text-zinc-300 md:text-lg"
-          >
-            A healthy, convenient, on-the-go solution.
-          </motion.p>
+            {/* Value props — desktop only, below subtitle */}
+            <motion.div
+              variants={fadeIn}
+              className="hidden lg:flex items-center gap-x-8 text-sm text-zinc-300/70"
+            >
+              <span>Balanced nutrition</span>
+              <span className="text-zinc-400">&middot;</span>
+              <span>Science-based</span>
+              <span className="text-zinc-400">&middot;</span>
+              <span>No prep needed</span>
+            </motion.div>
+          </div>
 
-          {/* Waitlist card — glassmorphism */}
-          <motion.div
-            variants={fadeUp}
-            className="glass-card w-full max-w-md rounded-2xl p-8 lg:p-10"
-          >
-            <AnimatePresence mode="wait">
-              {status === "success" ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="flex flex-col items-center gap-5 py-6"
-                >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10 text-2xl text-emerald-400">
-                    &#10003;
-                  </div>
-                  <div>
-                    <p className="text-lg font-semibold text-white">
-                      You&apos;re on the list!
+          {/* Right side — waitlist card (desktop) / below hero (mobile) */}
+          <div className="flex w-full flex-col items-center gap-6 lg:flex-none lg:w-[420px]">
+            {/* Waitlist card */}
+            <motion.div
+              variants={fadeUp}
+              className="glass-card w-full rounded-2xl p-8 lg:p-10"
+            >
+              <AnimatePresence mode="wait">
+                {status === "success" ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="flex flex-col items-center gap-5 py-6"
+                  >
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10 text-2xl text-emerald-400">
+                      &#10003;
+                    </div>
+                    <div className="text-center">
+                      <p className="text-lg font-semibold text-white">
+                        You&apos;re on the list!
+                      </p>
+                      <p className="mt-2 text-sm text-zinc-300">
+                        Keep an eye on your inbox.
+                      </p>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    onSubmit={handleSubmit}
+                    className="flex flex-col gap-5"
+                  >
+                    <p className="text-sm font-medium text-zinc-200">
+                      Be the first to meet the bar that makes busy days easier.
                     </p>
-                    <p className="mt-2 text-sm text-zinc-300">
-                      Keep an eye on your inbox.
-                    </p>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  onSubmit={handleSubmit}
-                  className="flex flex-col gap-5"
-                >
-                  <p className="text-sm font-medium text-zinc-200">
-                    Be the first to know when we launch.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
                     <input
                       type="email"
                       value={email}
@@ -174,40 +192,40 @@ export default function Home() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="btn-burgundy w-full sm:w-auto sm:min-w-[180px] shrink-0 rounded-xl px-6 py-3.5 text-sm font-semibold text-white"
+                      className="btn-burgundy w-full rounded-xl px-6 py-3.5 text-sm font-semibold text-white"
                     >
                       {status === "loading" ? "Joining..." : "Join the Waitlist"}
                     </button>
-                  </div>
-                  <AnimatePresence>
-                    {status === "error" && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="text-sm text-red-400/80"
-                      >
-                        {errorMsg}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </motion.form>
-              )}
-            </AnimatePresence>
-          </motion.div>
+                    <AnimatePresence>
+                      {status === "error" && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="text-sm text-red-400/80"
+                        >
+                          {errorMsg}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </motion.div>
 
-          {/* Value props */}
-          <motion.div
-            variants={fadeIn}
-            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] lg:text-sm text-zinc-300/70"
-          >
-            <span>Balanced nutrition</span>
-            <span className="hidden sm:inline text-zinc-400">&middot;</span>
-            <span>Science-based</span>
-            <span className="hidden sm:inline text-zinc-400">&middot;</span>
-            <span>No prep needed</span>
-          </motion.div>
+            {/* Value props — mobile only */}
+            <motion.div
+              variants={fadeIn}
+              className="flex lg:hidden flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] text-zinc-300/70"
+            >
+              <span>Balanced nutrition</span>
+              <span className="hidden sm:inline text-zinc-400">&middot;</span>
+              <span>Science-based</span>
+              <span className="hidden sm:inline text-zinc-400">&middot;</span>
+              <span>No prep needed</span>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Footer */}
