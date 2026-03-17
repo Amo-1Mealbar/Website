@@ -83,7 +83,7 @@ export default function Home() {
           {/* Brand wordmark */}
           <motion.p
             variants={fadeIn}
-            className="text-sm lg:text-base font-medium tracking-[0.35em] uppercase text-zinc-500"
+            className="text-2xl lg:text-3xl font-semibold tracking-[0.35em] uppercase text-white/90"
           >
             AmoBar
           </motion.p>
@@ -109,7 +109,7 @@ export default function Home() {
           >
             One bar.
             <br />
-            <span className="bg-gradient-to-r from-[#d4858f] to-[#a85060] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#f5d670] to-[#d4a832] bg-clip-text text-transparent">
               One full meal.
             </span>
           </motion.h1>
@@ -117,7 +117,7 @@ export default function Home() {
           {/* Subtitle */}
           <motion.p
             variants={fadeUp}
-            className="max-w-sm lg:max-w-md text-base leading-relaxed text-zinc-500 md:text-lg"
+            className="max-w-sm lg:max-w-md text-base leading-relaxed text-zinc-300 md:text-lg"
           >
             A healthy, convenient, on-the-go solution.
           </motion.p>
@@ -144,7 +144,7 @@ export default function Home() {
                     <p className="text-lg font-semibold text-white">
                       You&apos;re on the list!
                     </p>
-                    <p className="mt-2 text-sm text-zinc-500">
+                    <p className="mt-2 text-sm text-zinc-300">
                       Keep an eye on your inbox.
                     </p>
                   </div>
@@ -157,7 +157,7 @@ export default function Home() {
                   onSubmit={handleSubmit}
                   className="flex flex-col gap-5"
                 >
-                  <p className="text-sm font-medium text-zinc-400">
+                  <p className="text-sm font-medium text-zinc-200">
                     Be the first to know when we launch.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
@@ -200,12 +200,12 @@ export default function Home() {
           {/* Value props */}
           <motion.div
             variants={fadeIn}
-            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] lg:text-sm text-zinc-600"
+            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] lg:text-sm text-zinc-300/70"
           >
             <span>Balanced nutrition</span>
-            <span className="hidden sm:inline text-zinc-800">&middot;</span>
+            <span className="hidden sm:inline text-zinc-400">&middot;</span>
             <span>Science-based</span>
-            <span className="hidden sm:inline text-zinc-800">&middot;</span>
+            <span className="hidden sm:inline text-zinc-400">&middot;</span>
             <span>No prep needed</span>
           </motion.div>
         </motion.div>
@@ -215,7 +215,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.6 }}
-          className="absolute bottom-8 text-[11px] tracking-wider text-zinc-700"
+          className="absolute bottom-8 text-[11px] tracking-wider text-zinc-400"
         >
           &copy; 2026 AmoBar
         </motion.footer>
