@@ -64,12 +64,10 @@ export default function Home() {
 
   return (
     <>
-      {/* Atmospheric background */}
+      {/* Background */}
       <div className="bg-scene">
-        <div className="bg-orb-1" />
-        <div className="bg-orb-2" />
-        <div className="bg-orb-3" />
-        <div className="bg-orb-warm" />
+        <img src="/bg_upscaled.webp" alt="" className="bg-scene-img" />
+        <div className="bg-scene-overlay" />
       </div>
       <div className="bg-noise" />
       <div className="bg-vignette" />
