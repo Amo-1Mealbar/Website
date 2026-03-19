@@ -32,4 +32,4 @@ Use this exact copy:
 - On success, replace the form smoothly with: "You are on the list! Keep an eye on your inbox."
 - **DO NOT BE LAZY.** Write the full, production-ready code. Do not use placeholders for the CSS.
 
-Execute the build now.
+Execute the build now. a
