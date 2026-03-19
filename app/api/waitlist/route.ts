@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sql } from "@vercel/postgres";
 
 export async function POST(request: Request) {
   try {
@@ -11,34 +12,23 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.LOOPS_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        { success: false, error: "Waitlist is temporarily unavailable." },
-        { status: 500 }
-      );
-    }
+    // Create table if it doesn't exist
+    await sql`
+      CREATE TABLE IF NOT EXISTS waitlist (
+        id SERIAL PRIMARY KEY,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW()
+      )
+    `;
 
-    const res = await fetch("https://app.loops.so/api/v1/contacts/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({ email, source: "waitlist" }),
-    });
+    // Insert email, ignore duplicates
+    await sql`
+      INSERT INTO waitlist (email)
+      VALUES (${email})
+      ON CONFLICT (email) DO NOTHING
+    `;
 
-    const data = await res.json();
-
-    // Treat duplicate as success
-    if (res.ok || data.message?.includes("already")) {
-      return NextResponse.json({ success: true });
-    }
-
-    return NextResponse.json(
-      { success: false, error: "Could not join the waitlist. Please try again." },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json(
       { success: false, error: "Something went wrong. Please try again." },
